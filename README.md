@@ -31,3 +31,37 @@ Garantam que tanto o repositório do github como o package no github estão ambo
 01/05/2025
 
 Deve ser enviada, até à data limite de entrega, um link para o vosso github (tem de estar público). Podem enviar este link para o meu email `lopesg.miguel@gmail.com` ou slack.
+
+# Introdução
+Este projecto foi divido em 8 pontos, sendo que os mesmos não foram executados de forma sequencial.
+
+Os passos são:
+- Criar Repositório
+- Readme atualizado
+- Ambiente Conda
+- MLFlow Tracking Server
+- Serviço API
+- Testes
+- Serviço conteinereizado
+- Pipeline CICD
+
+# 1 - Criar Repositório
+
+
+# 2 - 'README.md' atualizado
+Para este passo criei um branch onde farei todas as alterações a este ficheiro.
+
+
+# 3 - Ambiente Conda
+
+
+# 4 - MLFlow Tracking Server
+
+
+# 5 - Serviço API
+
+# 6 - Testes
+
+# 7 - Serviço Conteinereizado
+
+# 8 - Pipeline
