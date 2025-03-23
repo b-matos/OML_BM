@@ -68,6 +68,8 @@ Para o projeto foi criando um ambiente Conda com todas as dependências.
 
 
 # 4 - MLFlow Tracking Server
+Para criar o MLFlow Tracking server, registei o modelo e os seus parametros, assim como as métricas de avaliação.
+
 
 
 # 5 - Serviço API
