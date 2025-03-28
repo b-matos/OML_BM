@@ -1,0 +1,15 @@
+artifact_uri: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/OML_BM/notebooks/../mlruns/822258365862032142/911e41ca440b45a39204b1861e2e82df/artifacts
+end_time: 1743186325642
+entry_point_name: ''
+experiment_id: '822258365862032142'
+lifecycle_stage: active
+run_id: 911e41ca440b45a39204b1861e2e82df
+run_name: Logistic Regression Run
+run_uuid: 911e41ca440b45a39204b1861e2e82df
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1743186246383
+status: 3
+tags: []
+user_id: bernardomatos
