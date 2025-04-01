@@ -66,8 +66,26 @@ Um ficheiro Readme foi criado para uma melhor compreensão da estrutura do proje
 # 3 - Ambiente Conda
 Para o projeto foi criando um ambiente Conda com todas as dependências.
 
+Para criar um ambiente com as mesmas configurações, usar o código:
+````
+conda create -f conda.yaml
+````
+
+De modo a que fique ativo, é necessário executar:
+```
+conda activate OML_Latest
+```
+
 
 # 4 - MLFlow Tracking Server
+Para criar o MLFlow Tracking server, registei o modelo e os seus parametros, assim como as métricas de avaliação.
+
+Para vizualizar o servidor executar:
+```
+mlflow ui --backend-store-uri ../mlruns
+```
+
+(A parte `../mlruns` deverá ser substituída pela localização das runs)
 
 
 # 5 - Serviço API
