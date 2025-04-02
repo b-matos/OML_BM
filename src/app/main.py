@@ -98,7 +98,7 @@ async def startup_event():
     print(f"Loaded model {model_uri}")
 
 
-@app.post("/default")
+@app.post("/default_payment")
 async def predict(input: Request):  
     """
     Prediction endpoint that processes input data and returns a model prediction.
@@ -119,5 +119,15 @@ async def predict(input: Request):
     # Return the prediction result as a JSON response
     return {"prediction": prediction.tolist()[0]}
 
-# Run the app on port 5003
+@app.get("/default_payment_params")
+async def get_params():
+    """
+    Endpoint to retrieve the parameters of the model.
+
+    Returns:
+        dict: A dictionary containing the model parameters.
+    """
+    return app.model
+
+# Run the app on port 5002
 uvicorn.run(app=app, port=config["service_port"], host="0.0.0.0")
