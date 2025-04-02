@@ -55,8 +55,7 @@ Mas o banco está algo receoso, já que teve uma má experiência anterior com u
 Por causa desta prévia má experiência, o banco desta vez quer ter garantias que a passagem dos resultados iniciais para produção é feita de forma mais eficiente. O objetivo é que a equipa de engenharia consegue colocar o vosso modelo em produção em dias em vez de meses!
 
 # 1 - Criar Repositório
-Este projecto está disponivel no repositório:
- https://github.com/b-matos/OML_BM.git
+Este projecto está disponivel no repositório: https://github.com/b-matos/OML_BM.git
 
 
 # 2 - 'README.md' atualizado
@@ -64,7 +63,10 @@ Um ficheiro Readme foi criado para uma melhor compreensão da estrutura do proje
 
 
 # 3 - Ambiente Conda
-Para o projeto foi criando um ambiente Conda com todas as dependências.
+Para o projeto foi criado um ambiente Conda com todas as dependências e de seguida exportado:
+```
+conda env export --file conda.yaml --no-builds
+```
 
 Para criar um ambiente com as mesmas configurações, usar o código:
 ````
@@ -85,10 +87,36 @@ Para vizualizar o servidor executar:
 mlflow ui --backend-store-uri ../mlruns
 ```
 
-(A parte `../mlruns` deverá ser substituída pela localização das runs)
+(`../mlruns` deverá ser substituída pela localização das runs)
 
+## Model Registry
+Os modelos foram registados ao correr o notebook: rumos_bank_lending_prediction.ipynb
+
+Nesse notebook são testados e registados os seguintes modelos:
+- Logistic Regression
+- KNN
+- SVM
+- Decision Tree
+- Random Forest
+- Neural Networks
+
+Após analise, foi escolhido o Random Forest como modelo a utilizar (@champion)
+
+## MLFlow Server
+
+
+
+Para correr o serviço MLFlow Tracking Server localmente é necessário executar os seguintes comandos:
+```
+% MLFLOW_TRACKING_URI=../mlruns
+
+% mlflow server --port 5001 --backend-store-uri ../mlruns --artifacts-destination ../mlruns   
+```
 
 # 5 - Serviço API
+Para expor o modelo registado numa API foi utilizada a framework FastAPI.
+
+(Para que o serviço funcione, é necessário que o MLFlow Tracking Server esteja a correr)
 
 # 6 - Testes
 
