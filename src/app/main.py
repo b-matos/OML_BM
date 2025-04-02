@@ -89,8 +89,12 @@ async def startup_event():
     """
         
     #mlflow.set_tracking_uri(f"{config['tracking_base_url']}:{config['tracking_port']}")
-    mlflow.set_tracking_uri(f"http://localhost:{config['tracking_port']}")
+    MLFLOW_TRACKING_URI = f"http://localhost:{config['tracking_port']}"
+    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
  
+    app.client = mlflow.tracking.MlflowClient(
+        tracking_uri=MLFLOW_TRACKING_URI
+    )
 
     # Load the registered model specified in the configuration
     model_uri = f"models:/{config['model_name']}@{config['model_version']}"
@@ -98,7 +102,7 @@ async def startup_event():
     print(f"Loaded model {model_uri}")
 
 
-@app.post("/default")
+@app.post("/default_payment")
 async def predict(input: Request):  
     """
     Prediction endpoint that processes input data and returns a model prediction.
@@ -119,5 +123,43 @@ async def predict(input: Request):
     # Return the prediction result as a JSON response
     return {"prediction": prediction.tolist()[0]}
 
-# Run the app on port 5003
+@app.get("/model_params")
+async def get_params():
+    """
+    Endpoint to retrieve the parameters of the model.
+
+    Returns:
+        dict: A dictionary containing the model parameters.
+    """
+    RUN_ID = app.model.metadata.to_dict()['run_id']
+
+    model_data = app.client.get_run(RUN_ID).data.to_dictionary()
+    
+    return model_data['params']
+
+@app.get("/model_metrics")
+async def get_metrics():
+    """
+    Endpoint to retrieve the metrics of the model.
+
+    Returns:
+        dict: A dictionary containing the model metrics.
+    """
+    RUN_ID = app.model.metadata.to_dict()['run_id']
+
+    model_data = app.client.get_run(RUN_ID).data.to_dictionary()
+    
+    return model_data['metrics']
+
+@app.get("/model_metadata")
+async def get_params():
+    """
+    Endpoint to retrieve the metadata of the model.
+
+    Returns:
+        dict: A dictionary containing the model metadata.
+    """
+
+    return app.model.metadata.to_dict()
+# Run the app on port 5002
 uvicorn.run(app=app, port=config["service_port"], host="0.0.0.0")
