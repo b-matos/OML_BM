@@ -102,8 +102,9 @@ Nesse notebook são testados e registados os seguintes modelos:
 
 Após analise, foi escolhido o Random Forest como modelo a utilizar (@champion)
 
-## MLFlow Server
+Mais tarde foi criado um modelo com pipeline, apesar do random forest não precisar de normalização dos dados.
 
+## MLFlow Server
 
 
 Para correr o serviço MLFlow Tracking Server localmente é necessário executar os seguintes comandos:
