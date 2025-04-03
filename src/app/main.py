@@ -152,7 +152,7 @@ async def get_metrics():
     return model_data['metrics']
 
 @app.get("/model_metadata")
-async def get_params():
+async def get_metadata():
     """
     Endpoint to retrieve the metadata of the model.
 
