@@ -89,7 +89,9 @@ async def startup_event():
     """
         
     #mlflow.set_tracking_uri(f"{config['tracking_base_url']}:{config['tracking_port']}")
-    MLFLOW_TRACKING_URI = f"http://localhost:{config['tracking_port']}"
+    # MLFLOW_TRACKING_URI = f"{config['tracking_base_url']}:{config['tracking_port']}" # comment this line to run locally
+
+    MLFLOW_TRACKING_URI = f"http://localhost:{config['tracking_port']}" # uncomment this line to run locally
     mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
  
     app.client = mlflow.tracking.MlflowClient(
@@ -102,7 +104,7 @@ async def startup_event():
     print(f"Loaded model {model_uri}")
 
 
-@app.post("/default_payment")
+@app.post("/default_payment_prediction")
 async def predict(input: Request):  
     """
     Prediction endpoint that processes input data and returns a model prediction.
