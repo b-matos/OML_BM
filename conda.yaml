@@ -52,6 +52,7 @@ dependencies:
   - hyperframe=6.1.0
   - idna=3.10
   - importlib-metadata=8.6.1
+  - iniconfig=1.1.1
   - ipykernel=6.29.5
   - ipython=8.32.0
   - itsdangerous=2.2.0
@@ -105,6 +106,7 @@ dependencies:
   - pillow=11.1.0
   - pip=25.0
   - platformdirs=4.3.6
+  - pluggy=1.5.0
   - prompt-toolkit=3.0.50
   - propcache=0.2.1
   - protobuf=4.25.3
@@ -120,6 +122,7 @@ dependencies:
   - pyopenssl=25.0.0
   - pyparsing=3.2.0
   - pysocks=1.7.1
+  - pytest=8.3.4
   - python=3.12.2
   - python-dateutil=2.9.0post0
   - python-tzdata=2023.3
