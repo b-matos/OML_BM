@@ -109,7 +109,7 @@ Mais tarde foi criado um modelo com pipeline, apesar do random forest não preci
 
 Para correr o serviço MLFlow Tracking Server localmente é necessário executar os seguintes comandos:
 ```
-% MLFLOW_TRACKING_URI=../mlruns
+### % MLFLOW_TRACKING_URI=../mlruns
 
 % mlflow server --port 5001 --backend-store-uri ../mlruns --artifacts-destination ../mlruns   
 ```
@@ -117,9 +117,37 @@ Para correr o serviço MLFlow Tracking Server localmente é necessário executar
 # 5 - Serviço API
 Para expor o modelo registado numa API foi utilizada a framework FastAPI.
 
+```
+python src/app/main.py
+```
 (Para que o serviço funcione, é necessário que o MLFlow Tracking Server esteja a correr)
 
+O serviço tem 4 endpoints:
+- /default_payment_prediction
+- /model_metrics
+- /model_params
+- /model_metadata
+
+Para analizar a documentação do que ficou exposto, basta aceder a:
+http://127.0.0.1:5002/docs
+
+(A porta 5002 poderá ser configurável no ficheiro config/app.json)
+
 # 6 - Testes
+Neste projecto foram criados testes ao modelo (MLFlow) e ao serviço (FastAPI).
+
+**test_model.py:**
+- test_model_out
+- test_model_dir
+- test_model_out_shape
+
+**test_service.py:**
+- test_default_payment_prediction
+- test_default_payment_prediction_invalid_data
+- test_default_payment_prediction_missing_data
+- test_get_model_metrics
+- test_get_model_params
+- test_get_model_metadata
 
 # 7 - Serviço Conteinereizado
 
