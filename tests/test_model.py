@@ -2,6 +2,7 @@ import json
 import pytest
 import pandas as pd
 import mlflow
+import mlflow.pyfunc
 from pathlib import Path
 
 

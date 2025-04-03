@@ -87,8 +87,24 @@ def test_default_payment_prediction_missing_data():
 def test_get_model_metrics():
     """
     Test for the /model endpoint.
-    It should return the model metadata.
+    It should return the model metrics.
     """
     response = requests.get(f"http://localhost:{config["service_port"]}/model_metrics")
     assert response.status_code == 200
     assert len(response.json()) == 6
+
+def test_get_model_params():
+    """
+    Test for the /model endpoint.
+    It should return the model params.
+    """
+    response = requests.get(f"http://localhost:{config["service_port"]}/model_params")
+    assert response.status_code == 200
+
+def test_get_model_metadata():
+    """
+    Test for the /model endpoint.
+    It should return the model metadata.
+    """
+    response = requests.get(f"http://localhost:{config["service_port"]}/model_metadata")
+    assert response.status_code == 200
