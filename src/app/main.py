@@ -2,7 +2,9 @@ import fastapi
 from fastapi.middleware.cors import CORSMiddleware
 
 import mlflow
-from pydantic import BaseModel, conint, confloat
+from mlflow.exceptions import MlflowException
+from pydantic import BaseModel, conint, confloat, Field
+from typing import Annotated
 import pandas as pd
 import json
 import uvicorn
@@ -87,11 +89,9 @@ async def startup_event():
     Configures the tracking URI for MLflow to locate the model metadata
     in the local mlruns directory.
     """
-        
-    #mlflow.set_tracking_uri(f"{config['tracking_base_url']}:{config['tracking_port']}")
-    # MLFLOW_TRACKING_URI = f"{config['tracking_base_url']}:{config['tracking_port']}" # comment this line to run locally
 
-    MLFLOW_TRACKING_URI = f"http://localhost:{config['tracking_port']}" # uncomment this line to run locally
+    MLFLOW_TRACKING_URI = f"{config['tracking_base_url']}:{config['tracking_port']}" # comment this line to run locally
+    #MLFLOW_TRACKING_URI = f"http://localhost:{config['tracking_port']}" # uncomment this line to run locally
     mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
  
     app.client = mlflow.tracking.MlflowClient(
@@ -163,5 +163,21 @@ async def get_metadata():
     """
 
     return app.model.metadata.to_dict()
+
+@app.get("/health")
+def health_check():
+    """
+    Health check endpoint to verify if the service is running.
+
+    Returns:
+        dict: A dictionary indicating that the service is healthy.
+    """
+    try:
+        mlflow.search_experiments()
+        return {"status": "healthy"}
+    except MlflowException:
+        return {"status": "unhealthy"}
+
+
 # Run the app on port 5002
 uvicorn.run(app=app, port=config["service_port"], host="0.0.0.0")
