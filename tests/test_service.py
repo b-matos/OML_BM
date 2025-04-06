@@ -10,7 +10,7 @@ def test_default_payment_prediction():
     Test for the /default_payment endpoint with valid input data.
     It should return a prediction in the response.
     """
-    response = requests.post(f"http://localhost:{config["service_port"]}/default_payment", json={
+    response = requests.post(f"http://localhost:{config["service_port"]}/default_payment_prediction", json={
         'LIMIT_BAL': 30000.0,
         'SEX': 2,
         'EDUCATION': 3,
@@ -47,7 +47,7 @@ def test_default_payment_prediction_invalid_data():
     Test for the /default_payment endpoint with invalid input data.
     It should return a 422 Unprocessable Entity status code.
     """
-    response = requests.post(f"http://localhost:{config["service_port"]}/default_payment", json={
+    response = requests.post(f"http://localhost:{config["service_port"]}/default_payment_prediction", json={
         'LIMIT_BAL': 30000.0,
         'SEX': 2,
         'EDUCATION': 3.5, # Invalid value
@@ -79,7 +79,7 @@ def test_default_payment_prediction_missing_data():
     Test for the /default_payment endpoint with missing input data.
     It should return a 422 Unprocessable Entity status code.
     """
-    response = requests.post(f"http://localhost:{config["service_port"]}/default_payment")
+    response = requests.post(f"http://localhost:{config["service_port"]}/default_payment_prediction")
     assert response.status_code == 422    
 
 
