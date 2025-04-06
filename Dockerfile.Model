@@ -4,10 +4,10 @@ FROM ghcr.io/mlflow/mlflow
 WORKDIR /mlruns
 
 # Expose the port
-EXPOSE 5001
+EXPOSE 5000
 
 # Copy the mlruns directory to the container
 COPY /mlruns /mlruns
 
 # Define the command to run the MLflow UI
-CMD ["mlflow", "ui", "--port", "5001", "--host", "0.0.0.0", "--backend-store-uri", "/mlruns", "--artifacts-destination", "/mlruns"]
+CMD ["mlflow", "ui", "--port", "5000", "--host", "0.0.0.0", "--backend-store-uri", "/mlruns", "--artifacts-destination", "/mlruns"]
