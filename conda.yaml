@@ -70,7 +70,7 @@ dependencies:
   - libdeflate=1.22
   - libexpat=2.6.4
   - libffi=3.4.4
-  # - libgfortran=5.0.0
+  - libgfortran=5.0.0
   - libgfortran5=11.3.0
   - libopenblas=0.3.21
   - libpng=1.6.39
