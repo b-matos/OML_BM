@@ -176,7 +176,10 @@ def health_check():
         mlflow.search_experiments()
         return {"status": "healthy"}
     except MlflowException:
-        return {"status": "unhealthy"}
+        raise fastapi.HTTPException(
+            status_code=500,
+            detail="MLflow tracking server is not reachable"
+        )
 
 
 # Run the app on port 5002
