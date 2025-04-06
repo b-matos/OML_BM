@@ -89,6 +89,7 @@ mlflow ui --backend-store-uri ../mlruns
 
 (`../mlruns` deverá ser substituída pela localização das runs)
 
+
 ## Model Registry
 Os modelos foram registados ao correr o notebook: rumos_bank_lending_prediction.ipynb
 
@@ -112,6 +113,31 @@ Para correr o serviço MLFlow Tracking Server localmente é necessário executar
 ### % MLFLOW_TRACKING_URI=../mlruns
 
 % mlflow server --port 5001 --backend-store-uri ../mlruns --artifacts-destination ../mlruns   
+```
+
+## Model Registry
+Os modelos foram registados ao correr o notebook: rumos_bank_lending_prediction.ipynb
+
+Nesse notebook são testados e registados os seguintes modelos:
+- Logistic Regression
+- KNN
+- SVM
+- Decision Tree
+- Random Forest
+- Neural Networks
+
+Após analise, foi escolhido o Random Forest como modelo a utilizar (@champion)
+
+Mais tarde foi criado um modelo com pipeline, apesar do random forest não precisar de normalização dos dados.
+
+## MLFlow Server
+
+
+Para correr o serviço MLFlow Tracking Server localmente é necessário executar os seguintes comandos:
+```
+### % MLFLOW_TRACKING_URI=../mlruns
+
+% mlflow ui --port 5001 --backend-store-uri ../mlruns --artifacts-destination ../mlruns   
 ```
 
 # 5 - Serviço API
