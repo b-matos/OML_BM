@@ -25,15 +25,14 @@ jobs:
       - name: Iniciar serviços
         run: docker compose up -d
 
-      - name: Health Check
-        sleep: 10
-        run: curl --fail http://localhost:5002/health || exit 1
-
       - name: Criar ambiente para executar testes com o conda
         uses: conda-incubator/setup-miniconda@v2
         with:
           environment-file: conda.yaml
           activate-environment: OML_Latest
+      
+      - name: Health Check
+        run: curl --fail http://localhost:5002/health || exit 1
 
       - name: Executar testes
         run: conda run --no-capture-output -n OML_Latest pytest tests/
