@@ -177,4 +177,10 @@ Neste projecto foram criados testes ao modelo (MLFlow) e ao serviço (FastAPI).
 
 # 7 - Serviço Conteinereizado
 
+Para correr em modo conteinereizado, é necessário correr o seguinte comando:
+```
+docker compose up
+```
+
+
 # 8 - Pipeline
