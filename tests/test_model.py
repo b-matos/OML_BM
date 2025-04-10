@@ -10,9 +10,9 @@ from pathlib import Path
 def model() -> mlflow.pyfunc.PyFuncModel:
     with open('./config/app.json') as f:
         config = json.load(f)
-    MLFLOW_TRACKING_URI = f"{config['tracking_base_url']}:{config['tracking_port']}"
-    #mlflow.set_tracking_uri(f"http://localhost:{config['tracking_port']}") #uncomment this line to run locally
-    mlflow.set_registry_uri(MLFLOW_TRACKING_URI) # comment this line to run locally
+    #MLFLOW_TRACKING_URI = f"{config['tracking_base_url']}:{config['tracking_port']}"
+    mlflow.set_tracking_uri(f"http://localhost:{config['tracking_port']}") #uncomment this line to run locally
+    #mlflow.set_registry_uri(MLFLOW_TRACKING_URI) # comment this line to run locally
     model_name = config["model_name"]
     model_version = config["model_version"]
     return mlflow.pyfunc.load_model(
