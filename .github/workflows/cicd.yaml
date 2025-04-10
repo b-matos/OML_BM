@@ -30,8 +30,11 @@ jobs:
           environment-file: conda.yaml
           activate-environment: OML_Latest
       
-      - name: Health Check
+      - name: Health Check Service
         run: curl --fail http://localhost:5002/health || exit 1
+      
+      - name: Health Check Model
+        run: curl --fail http://localhost:5001 || exit 1
 
       - name: Executar testes
         run: conda run --no-capture-output -n OML_Latest pytest
