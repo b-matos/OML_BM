@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/249634156294266374/4bed008226e64b92932d403b4c3e70a8/artifacts
+end_time: 1744307781417
+entry_point_name: ''
+experiment_id: '249634156294266374'
+lifecycle_stage: active
+run_id: 4bed008226e64b92932d403b4c3e70a8
+run_name: Logistic Forest
+run_uuid: 4bed008226e64b92932d403b4c3e70a8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744307519015
+status: 3
+tags: []
+user_id: bernardomatos
