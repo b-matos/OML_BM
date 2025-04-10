@@ -10,7 +10,9 @@ from pathlib import Path
 def model() -> mlflow.pyfunc.PyFuncModel:
     with open('./config/app.json') as f:
         config = json.load(f)
-    mlflow.set_tracking_uri(f"http://localhost:{config['tracking_port']}")
+    MLFLOW_TRACKING_URI = f"{config['tracking_base_url']}:{config['tracking_port']}"
+    #mlflow.set_tracking_uri(f"http://localhost:{config['tracking_port']}") #uncomment this line to run locally
+    mlflow.set_registry_uri(MLFLOW_TRACKING_URI) # comment this line to run locally
     model_name = config["model_name"]
     model_version = config["model_version"]
     return mlflow.pyfunc.load_model(
@@ -18,7 +20,7 @@ def model() -> mlflow.pyfunc.PyFuncModel:
     )
 
 
-def test_model_out(model: mlflow.pyfunc.PyFuncModel):
+def test_model_out_1(model: mlflow.pyfunc.PyFuncModel):
     input = pd.DataFrame.from_records([{
         'LIMIT_BAL': 30000.0,
         'SEX': 2,
@@ -49,31 +51,31 @@ def test_model_out(model: mlflow.pyfunc.PyFuncModel):
     assert prediction[0] == 1
 
 
-def test_model_dir(model: mlflow.pyfunc.PyFuncModel):
+def test_model_out_0(model: mlflow.pyfunc.PyFuncModel):
     input = pd.DataFrame.from_records([{
-        'LIMIT_BAL': 30000.0,
-        'SEX': 1,
-        'EDUCATION': 2,
-        'MARRIAGE': 2,
-        'AGE': 25,
-        'PAY_0': 0,
-        'PAY_2': 0,
-        'PAY_3': 0,
-        'PAY_4': 0,
-        'PAY_5': 0,
-        'PAY_6': 0,
-        'BILL_AMT1': 8864.0,
-        'BILL_AMT2': 10062.0,
-        'BILL_AMT3': 11581.0,
-        'BILL_AMT4': 12580.0,
-        'BILL_AMT5': 13716.0,
-        'BILL_AMT6': 14828.0,
-        'PAY_AMT1': 1500.0,
-        'PAY_AMT2': 2000.0,
-        'PAY_AMT3': 1500.0,
-        'PAY_AMT4': 1500.0,
-        'PAY_AMT5': 1500.0,
-        'PAY_AMT6': 2000.0
+        'LIMIT_BAL': 200000.0,
+        'SEX': 2.0,
+        'EDUCATION': 2.0,
+        'MARRIAGE': 1.0,
+        'AGE': 50.0,
+        'PAY_0': -2.0,
+        'PAY_2': -2.0,
+        'PAY_3': -2.0,
+        'PAY_4': -2.0,
+        'PAY_5': -2.0,
+        'PAY_6': -2.0,
+        'BILL_AMT1': 411.0,
+        'BILL_AMT2': 453.0,
+        'BILL_AMT3': 348.0,
+        'BILL_AMT4': 359.0,
+        'BILL_AMT5': 672.0,
+        'BILL_AMT6': 1620.0,
+        'PAY_AMT1': 453.0,
+        'PAY_AMT2': 348.0,
+        'PAY_AMT3': 359.0,
+        'PAY_AMT4': 672.0,
+        'PAY_AMT5': 1620.0,
+        'PAY_AMT6': 384.0
     }])
     prediction = model.predict(data=input)
     assert prediction[0] == 0
