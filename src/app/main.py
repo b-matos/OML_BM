@@ -172,11 +172,16 @@ def health_check():
     Returns:
         dict: A dictionary indicating that the service is healthy.
     """
+    model_uri = f"models:/{config['model_name']}@{config['model_version']}"
     try:
-        mlflow.search_experiments()
+        mlflow.pyfunc.load_model(model_uri = model_uri)
         return {"status": "healthy"}
-    except MlflowException:
-        return {"status": "unhealthy"}
+    except MlflowException as e:
+        raise fastapi.HTTPException(
+            status_code=500,
+            detail=f"MLflow client error: {e}"
+        )
+
 
 
 # Run the app on port 5002

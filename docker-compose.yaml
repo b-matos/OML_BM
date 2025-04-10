@@ -7,6 +7,7 @@ services:
       - ./mlruns:/mlruns
     ports:
       - 5001:5000
+    
 
   default-payment-prediction-service:
     build:
@@ -14,7 +15,15 @@ services:
       dockerfile: Dockerfile.Service
       tags:
         - default-payment-prediction-service:latest
+        - ghcr.io/b-matos/default-payment-prediction-service:latest
     image: default-payment-prediction-service
     container_name: default-payment-prediction-service
     ports:
       - 5002:5002
+    depends_on:
+      - "mlflow-tracking-server"
+    healthcheck:
+      test: curl --fail http://localhost:5002/health || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 1
