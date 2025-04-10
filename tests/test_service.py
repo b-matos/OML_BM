@@ -10,7 +10,8 @@ def test_default_payment_prediction():
     Test for the /default_payment endpoint with valid input data.
     It should return a prediction in the response.
     """
-    response = requests.post(f"http://localhost:{config["service_port"]}/default_payment", json={
+    # response = requests.post(f"http://localhost:{config["service_port"]}/default_payment_prediction", json={ # uncomment this line to run locally
+    response = requests.post(f"{config['service_base_url']}:{config['service_port']}/default_payment_prediction", json={ # comment this line to run locally
         'LIMIT_BAL': 30000.0,
         'SEX': 2,
         'EDUCATION': 3,
@@ -47,7 +48,8 @@ def test_default_payment_prediction_invalid_data():
     Test for the /default_payment endpoint with invalid input data.
     It should return a 422 Unprocessable Entity status code.
     """
-    response = requests.post(f"http://localhost:{config["service_port"]}/default_payment", json={
+    # response = requests.post(f"http://localhost:{config["service_port"]}/default_payment_prediction", json={ # uncomment this line to run locally
+    response = requests.post(f"{config['service_base_url']}:{config['service_port']}/default_payment_prediction", json={ # comment this line to run locally
         'LIMIT_BAL': 30000.0,
         'SEX': 2,
         'EDUCATION': 3.5, # Invalid value
@@ -79,7 +81,8 @@ def test_default_payment_prediction_missing_data():
     Test for the /default_payment endpoint with missing input data.
     It should return a 422 Unprocessable Entity status code.
     """
-    response = requests.post(f"http://localhost:{config["service_port"]}/default_payment")
+    # response = requests.post(f"http://localhost:{config["service_port"]}/default_payment_prediction") # uncomment this line to run locally
+    response = requests.post(f"{config['service_base_url']}:{config['service_port']}/default_payment_prediction") # comment this line to run locally
     assert response.status_code == 422    
 
 
@@ -89,7 +92,9 @@ def test_get_model_metrics():
     Test for the /model endpoint.
     It should return the model metrics.
     """
-    response = requests.get(f"http://localhost:{config["service_port"]}/model_metrics")
+
+    # response = requests.get(f"http://localhost:{config["service_port"]}/model_metrics") # uncomment this line to run locally
+    response = requests.post(f"{config['service_base_url']}:{config['service_port']}/model_metrics") # comment this line to run locally
     assert response.status_code == 200
     assert len(response.json()) == 6
 
@@ -98,7 +103,8 @@ def test_get_model_params():
     Test for the /model endpoint.
     It should return the model params.
     """
-    response = requests.get(f"http://localhost:{config["service_port"]}/model_params")
+    # response = requests.get(f"http://localhost:{config["service_port"]}/model_params") # uncomment this line to run locally
+    response = requests.post(f"{config['service_base_url']}:{config['service_port']}/model_params") # comment this line to run locally
     assert response.status_code == 200
 
 def test_get_model_metadata():
@@ -106,5 +112,6 @@ def test_get_model_metadata():
     Test for the /model endpoint.
     It should return the model metadata.
     """
-    response = requests.get(f"http://localhost:{config["service_port"]}/model_metadata")
+    # response = requests.get(f"http://localhost:{config["service_port"]}/model_metadata") # uncomment this line to run locally
+    response = requests.post(f"{config['service_base_url']}:{config['service_port']}/model_metadata") # comment this line to run locally
     assert response.status_code == 200
