@@ -14,6 +14,8 @@ def test_default_payment_prediction():
     # response = requests.post(f"http://localhost:{config["service_port"]}/default_payment_prediction", json={ # uncomment this line to run locally
     response = requests.post(f"{config['service_base_url']}:{config['service_port']}/default_payment_prediction", json={ # comment this line to run locally
 
+
+
         'LIMIT_BAL': 30000.0,
         'SEX': 2,
         'EDUCATION': 3,
