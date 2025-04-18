@@ -57,6 +57,8 @@ Por causa desta prévia má experiência, o banco desta vez quer ter garantias q
 # 1 - Criar Repositório
 Este projecto está disponivel no repositório: https://github.com/b-matos/OML_BM.git
 
+(Runs estão guardadas aqui:)
+
 
 # 2 - 'README.md' atualizado
 Um ficheiro Readme foi criado para uma melhor compreensão da estrutura do projeto.
@@ -176,6 +178,8 @@ Neste projecto foram criados testes ao modelo (MLFlow) e ao serviço (FastAPI).
 - test_get_model_metadata
 
 # 7 - Serviço Conteinereizado
+
+
 
 Para correr em modo conteinereizado, é necessário correr o seguinte comando:
 ```
