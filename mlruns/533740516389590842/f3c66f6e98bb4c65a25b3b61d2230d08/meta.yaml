@@ -1,0 +1,15 @@
+artifact_uri: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/f3c66f6e98bb4c65a25b3b61d2230d08/artifacts
+end_time: 1745088951264
+entry_point_name: ''
+experiment_id: '533740516389590842'
+lifecycle_stage: active
+run_id: f3c66f6e98bb4c65a25b3b61d2230d08
+run_name: SVM Run
+run_uuid: f3c66f6e98bb4c65a25b3b61d2230d08
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745088115931
+status: 3
+tags: []
+user_id: bernardomatos

@@ -1,6 +1,5 @@
-aliases:
-  champion: '2'
-creation_timestamp: 1744307749906
-description: ''
-last_updated_timestamp: 1744307997585
+aliases: {}
+creation_timestamp: 1745088109207
+description: null
+last_updated_timestamp: 1745090576726
 name: logistic_reg

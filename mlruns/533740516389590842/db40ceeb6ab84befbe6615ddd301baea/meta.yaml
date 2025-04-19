@@ -1,0 +1,15 @@
+artifact_uri: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/db40ceeb6ab84befbe6615ddd301baea/artifacts
+end_time: 1745088955219
+entry_point_name: ''
+experiment_id: '533740516389590842'
+lifecycle_stage: active
+run_id: db40ceeb6ab84befbe6615ddd301baea
+run_name: Decision Tree Run
+run_uuid: db40ceeb6ab84befbe6615ddd301baea
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745088951276
+status: 3
+tags: []
+user_id: bernardomatos
