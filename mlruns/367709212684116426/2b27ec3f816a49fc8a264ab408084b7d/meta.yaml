@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/367709212684116426/2b27ec3f816a49fc8a264ab408084b7d/artifacts
+end_time: 1745094390926
+entry_point_name: ''
+experiment_id: '367709212684116426'
+lifecycle_stage: active
+run_id: 2b27ec3f816a49fc8a264ab408084b7d
+run_name: KNN Run
+run_uuid: 2b27ec3f816a49fc8a264ab408084b7d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745094384113
+status: 3
+tags: []
+user_id: bernardomatos
