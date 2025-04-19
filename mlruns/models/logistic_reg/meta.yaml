@@ -1,5 +1,7 @@
 aliases: {}
-creation_timestamp: 1745088109207
-description: null
-last_updated_timestamp: 1745090576726
+creation_timestamp: 1745094383865
+deployment_job_id: null
+deployment_job_state: null
+description: ''
+last_updated_timestamp: 1745095996915
 name: logistic_reg
