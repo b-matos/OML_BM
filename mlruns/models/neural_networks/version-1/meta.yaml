@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1745089635543
+current_stage: None
+description: null
+last_updated_timestamp: 1745089635543
+name: neural_networks
+run_id: 77a31f4c2ef340d0930c935bec058d75
+run_link: null
+source: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/77a31f4c2ef340d0930c935bec058d75/artifacts/neural_networks
+status: READY
+status_message: null
+storage_location: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/77a31f4c2ef340d0930c935bec058d75/artifacts/neural_networks
+user_id: null
+version: 1

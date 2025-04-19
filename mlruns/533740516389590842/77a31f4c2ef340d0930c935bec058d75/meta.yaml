@@ -1,0 +1,15 @@
+artifact_uri: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/77a31f4c2ef340d0930c935bec058d75/artifacts
+end_time: 1745089635719
+entry_point_name: ''
+experiment_id: '533740516389590842'
+lifecycle_stage: active
+run_id: 77a31f4c2ef340d0930c935bec058d75
+run_name: Neural Networks Run
+run_uuid: 77a31f4c2ef340d0930c935bec058d75
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745088955291
+status: 3
+tags: []
+user_id: bernardomatos

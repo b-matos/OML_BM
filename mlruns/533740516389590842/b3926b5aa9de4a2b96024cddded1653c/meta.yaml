@@ -1,0 +1,15 @@
+artifact_uri: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/b3926b5aa9de4a2b96024cddded1653c/artifacts
+end_time: 1745090250469
+entry_point_name: ''
+experiment_id: '533740516389590842'
+lifecycle_stage: active
+run_id: b3926b5aa9de4a2b96024cddded1653c
+run_name: Neural Network - Pipeline
+run_uuid: b3926b5aa9de4a2b96024cddded1653c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745090248403
+status: 3
+tags: []
+user_id: bernardomatos
