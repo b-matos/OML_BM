@@ -21,6 +21,8 @@ def model() -> mlflow.pyfunc.PyFuncModel:
 
 
 def test_model_out_1(model: mlflow.pyfunc.PyFuncModel):
+    """
+    Test the model output for a 1 prediction."""
     input = pd.DataFrame.from_records([{
         'LIMIT_BAL': 220000.0,
         'SEX': 1,
@@ -52,6 +54,9 @@ def test_model_out_1(model: mlflow.pyfunc.PyFuncModel):
 
 
 def test_model_out_0(model: mlflow.pyfunc.PyFuncModel):
+    """
+    Test the model output for a 0 prediction.
+    """
     input = pd.DataFrame.from_records([{
         'LIMIT_BAL': 200000.0,
         'SEX': 1,
@@ -82,6 +87,8 @@ def test_model_out_0(model: mlflow.pyfunc.PyFuncModel):
 
 
 def test_model_out_shape(model: mlflow.pyfunc.PyFuncModel):
+    """
+    Test the model output shape."""
     input = pd.DataFrame.from_records([{
         'LIMIT_BAL': 50000.0,
         'SEX': 2,
