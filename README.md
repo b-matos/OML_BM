@@ -138,13 +138,14 @@ Nesse notebook são testados e registados os seguintes modelos:
 - KNN
 - SVM
 - Decision Tree
-- Random Forest
+- Random Forest (*)
 - Neural Networks
 
-Uma vez que o modelo Random Forest ocupa demasiado espaço e não é possivel passar para o Github, para este projeto foi discartado tendo sido escolhido o Neural Networks como modelo a utilizar (@champion).
+Uma vez que o modelo Random Forest ocupa demasiado espaço e não é possivel passar para o Github, para este projeto foi discartado tendo sido escolhido o Neural Networks como modelo a utilizar (@champion). O modelo @champion pode ser alterado no UI do MLFLow.
 
-Para isso, foi um modelo com pipeline, para que os dados não tenham de ser tratados antes de utilizar o modelo.
+Para isso, foi registado um modelo com pipeline para que os dados não tenham de ser tratados antes de utilizar o modelo.
 
+(* Random Forest foi excluido deste projeto devido ao tamanho ocupado pelo modelo)
 
 # 5 - Serviço API
 Para expor o modelo registado numa API foi utilizada a framework FastAPI, garantindo assim que o modelo usado possa ser reproduzido para aplicações e relatórios.
@@ -244,7 +245,7 @@ Neste projecto foram criados testes ao modelo (MLFlow) e ao serviço (FastAPI).
 
     Test for the /model endpoint.
     It should return the model metadata.
-<br>
+
 
 ## Testing
 Para correr os testes, basta usar o comando:
@@ -253,16 +254,47 @@ Para correr os testes, basta usar o comando:
 ```
 Este comando irá procurar os ficheiros python começados em `test_` e irá executá-los.
 
-Tanto o [MLFlow Tracking Server](#4---mlflow-tracking-server) como o [Serviço API](#5---serviço-api) têm de estar ativos antes de executar o comando de teste..
+Nota: Tanto o [MLFlow Tracking Server](#4---mlflow-tracking-server) como o [Serviço API](#5---serviço-api) têm de estar ativos antes de executar o comando de teste..
 
 # 7 - Serviço Conteinereizado
+De modo a que seja garantida a reprodutibilidade ao nível do sistema operativo, foram utilizados contentores docker.
 
+Foram criados dois ficheiros para contruir as imagens a serem utilizadas para correr o modelo e serviço.
 
-
-Para correr em modo conteinereizado, é necessário correr o seguinte comando:
+Para criar a imagem do MLFlow Tracking Server é necessário correr o comando:
 ```
-docker compose up
+% docker build -t mlflow-tracking-server:latest -f Dockerfile.Model
+```
+
+Analogamente, para o serviço:
+```
+% docker build -t default-payment-prediction-service:latest -f Dockerfile.Service
+```
+
+Para correr os contentores:
+```
+% docker run -d mlflow-tracking-server
+% docker run -d default-payment-prediction-service
+```
+
+Alternativamente, é possível executar apenas o comando abaixo para criar e correr os containers:
+```
+% docker compose up
 ```
 
 
 # 8 - Pipeline
+Por último foi definido um pipeline de cicd (no ficheiro `.github/workflows/cicd.yaml`) para que sejam garantidos testes minimos antes de ser feito o merge com o branch `main`.
+
+Para o executar, basta criar um pull request para main, o pipeline será executado automaticamente.
+
+Este pipeline é constituido pelos seguintes passos:
+- Obter repositório
+- Configurar Docker
+- Iniciar serviços
+- Criar ambiente para executar testes
+- Health Check Service
+- Health Check Model
+- Executar testes
+- Iniciar sessão no repositório
+- Enviar imagem para o repositório
