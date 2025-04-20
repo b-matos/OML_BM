@@ -59,38 +59,50 @@ Este projecto está disponivel no repositório: https://github.com/b-matos/OML_B
 
 
 # 2 - 'README.md' atualizado
-Um ficheiro Readme foi criado para uma melhor compreensão da estrutura do projeto.
+Um ficheiro README.md foi criado para uma melhor compreensão da estrutura do projeto.
 
 
 # 3 - Ambiente Conda
 Para o projeto foi criado um ambiente Conda com todas as dependências e de seguida exportado:
 ```
-conda env export --file conda.yaml --no-builds
+% conda env export --file conda.yaml --no-builds
 ```
 
 Para criar um ambiente com as mesmas configurações, usar o código:
 ````
-conda create -f conda.yaml
+% conda create -f conda.yaml
 ````
 
 De modo a que fique ativo, é necessário executar:
 ```
-conda activate OML_Latest
+% conda activate OML_Latest
 ```
 
 Para desativar:
 ```
-conda deactivate
+% conda deactivate
 ```
 
+Deste modo, fica garantida a reprodutibilidade ao nível dos pacotes de Python usados.
 
 # 4 - MLFlow Tracking Server
+De modo a que se tenha reprodutibilidade ao nível do modelo, foi criado um MLFlow Tracking Server.
+
 Para criar o MLFlow Tracking server, registei o modelo e os seus parametros, assim como as métricas de avaliação.
 
 Ao longo do projecto foram usadas duas formas de aceder às runs: localmente e através de um servidor.
 
 ## Localmente
-Para visualizar as runs é necessário executar:
+Não é necessário ter o UI a correr, bastando definir o caminho para guardar as runs nos respetivos notebooks:
+```
+uri = "../mlruns"
+
+Path(uri).mkdir(parents=True, exist_ok=True)
+
+mlflow.set_tracking_uri(uri)
+```
+
+No entanto, para visualizar as runs no frontend MLFlow é necessário executar:
 ```
 mlflow ui --backend-store-uri ./mlruns
 ```
@@ -102,8 +114,6 @@ Tipicamente a UI fica disponivel na porta 5000, sendo que para visualizar, basta
 
 Para correr o serviço MLFlow Tracking Server localmente é necessário executar os seguintes comandos:
 ```
-### % MLFLOW_TRACKING_URI=./mlruns
-
 % mlflow ui --port 5001 --backend-store-uri ./mlruns --artifacts-destination ./mlruns   
 ```
 
@@ -111,6 +121,14 @@ Para correr o serviço MLFlow Tracking Server localmente é necessário executar
 
 Neste caso a UI estara disponivel em: http://127.0.0.1:5001
 
+Para guardar as runs recorrendo a este servidor, tem de se apontar para o caminho da seguinte forma nos notebooks:
+```
+from pathlib import Path
+
+uri = "http://0.0.0.0:5001"
+
+mlflow.set_tracking_uri(uri)
+```
 
 ## Model Registry
 Os modelos foram registados ao correr o notebook: `rumos_bank_lending_prediction_register_mlruns`
@@ -129,12 +147,12 @@ Para isso, foi um modelo com pipeline, para que os dados não tenham de ser trat
 
 
 # 5 - Serviço API
-Para expor o modelo registado numa API foi utilizada a framework FastAPI.
+Para expor o modelo registado numa API foi utilizada a framework FastAPI, garantindo assim que o modelo usado possa ser reproduzido para aplicações e relatórios.
 
 Para correr esta API, basta executar o seguinte comando:
 
 ```
-python src/app/main.py
+% python src/app/main.py
 ```
 (Para que o serviço funcione, é necessário que o [MLFlow Tracking Server](#4---mlflow-tracking-server) esteja a correr)
 
@@ -165,7 +183,7 @@ Foram criados cinco endpoints para o serviço:
     Health check endpoint to verify if the service is running.
 <br>
 
-Para analizar a documentação do serviço que ficou exposto, basta aceder a: http://127.0.0.1:5002/docs
+Para analizar a documentação do serviço que ficou exposto, basta aceder a: http://127.0.0.1:5002/docs. Aqui podem ser testados todos os endpoints.
 
 (A porta 5002 poderá ser configurável no ficheiro `config/app.json`)
 
@@ -173,9 +191,20 @@ Para analizar a documentação do serviço que ficou exposto, basta aceder a: ht
 Neste projecto foram criados testes ao modelo (MLFlow) e ao serviço (FastAPI).
 
 **test_model.py:**
-- test_model_out_1: test prediction 1
-- test_model_out_0: test prediction 0
-- test_model_out_shape: test shape of prediction
+
+*test_model_out_1*
+
+    test prediction 1
+<br>
+
+*test_model_out_0*
+
+    test prediction 0
+<br>
+
+*test_model_out_shape*
+
+    test shape of prediction
 <br>
 <br>
 
@@ -216,6 +245,15 @@ Neste projecto foram criados testes ao modelo (MLFlow) e ao serviço (FastAPI).
     Test for the /model endpoint.
     It should return the model metadata.
 <br>
+
+## Testing
+Para correr os testes, basta usar o comando:
+```
+% pytest
+```
+Este comando irá procurar os ficheiros python começados em `test_` e irá executá-los.
+
+Tanto o [MLFlow Tracking Server](#4---mlflow-tracking-server) como o [Serviço API](#5---serviço-api) têm de estar ativos antes de executar o comando de teste..
 
 # 7 - Serviço Conteinereizado
 
