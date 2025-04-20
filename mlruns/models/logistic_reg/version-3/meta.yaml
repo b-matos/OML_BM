@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1745090248276
+current_stage: None
+description: null
+last_updated_timestamp: 1745090248276
+name: logistic_reg
+run_id: 6d160237f2d8406aaef5c93287939bf9
+run_link: null
+source: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/6d160237f2d8406aaef5c93287939bf9/artifacts/lr_pipeline
+status: READY
+status_message: null
+storage_location: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/6d160237f2d8406aaef5c93287939bf9/artifacts/lr_pipeline
+user_id: null
+version: 3

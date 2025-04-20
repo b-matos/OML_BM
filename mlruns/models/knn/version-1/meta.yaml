@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1745088115508
+current_stage: None
+description: null
+last_updated_timestamp: 1745088115508
+name: knn
+run_id: 3f5f88dc5643409ba88b8fcabef70045
+run_link: null
+source: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/3f5f88dc5643409ba88b8fcabef70045/artifacts/knn
+status: READY
+status_message: null
+storage_location: /Users/bernardomatos/Documents/Pos_Graduacao_Data_Science/Project_OML/OML_BM/notebooks/../mlruns/533740516389590842/3f5f88dc5643409ba88b8fcabef70045/artifacts/knn
+user_id: null
+version: 1
