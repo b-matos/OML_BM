@@ -4,10 +4,23 @@ from fastapi.middleware.cors import CORSMiddleware
 import mlflow
 from mlflow.exceptions import MlflowException
 from pydantic import BaseModel, conint, confloat, Field
+from enum import Enum
 from typing import Annotated
 import pandas as pd
 import json
 import uvicorn
+
+class ValidInt(Enum):
+    NEGATIVE_ONE = -1
+    ONE = 1
+    TWO = 2
+    THREE = 3
+    FOUR = 4
+    FIVE = 5
+    SIX = 6
+    SEVEN = 7
+    EIGHT = 8
+    NINE = 9
 
 # Load the application configuration
 with open('./config/app.json') as f:
@@ -44,29 +57,29 @@ class Request(BaseModel):
         PAY_AMT5: Amount of previous payment in May, 2005 (NT dollar)
         PAY_AMT6: Amount of previous payment in April, 2005 (NT dollar)
     """
-    LIMIT_BAL: confloat(ge=0) = 0
-    SEX: int = 1
-    EDUCATION: int = 1
-    MARRIAGE: int = 1
-    AGE: int = 31
-    PAY_0: int = 0
-    PAY_2: int = 0
-    PAY_3: int = 0
-    PAY_4: int = 0
-    PAY_5: int = 0
-    PAY_6: int = 0
-    BILL_AMT1: float = 0
-    BILL_AMT2: float = 0
-    BILL_AMT3: float = 0
-    BILL_AMT4: float = 0
-    BILL_AMT5: float = 0
-    BILL_AMT6: float = 0
-    PAY_AMT1: float = 0
-    PAY_AMT2: float = 0
-    PAY_AMT3: float = 0
-    PAY_AMT4: float = 0
-    PAY_AMT5: float = 0
-    PAY_AMT6: float = 0
+    LIMIT_BAL: confloat(ge=0) = 220000.0
+    SEX: conint(ge=1, le=2) = 1
+    EDUCATION: conint(ge=1, le=6) = 1
+    MARRIAGE: conint(ge=1 , le=3) = 2
+    AGE: int = 29
+    PAY_0: ValidInt = 1
+    PAY_2: ValidInt = 2
+    PAY_3: ValidInt = 2
+    PAY_4: ValidInt = 2
+    PAY_5: ValidInt = 2
+    PAY_6: ValidInt = 2
+    BILL_AMT1: confloat(ge=0) = 31012.0
+    BILL_AMT2: confloat(ge=0) = 30215.0
+    BILL_AMT3: confloat(ge=0) = 33117.0
+    BILL_AMT4: confloat(ge=0) = 32286.0
+    BILL_AMT5: confloat(ge=0) = 34320.0
+    BILL_AMT6: confloat(ge=0) = 33634.0
+    PAY_AMT1: confloat(ge=0) = 0.0
+    PAY_AMT2: confloat(ge=0) = 3400.0
+    PAY_AMT3: confloat(ge=0) = 0.0
+    PAY_AMT4: confloat(ge=0) = 2576.0
+    PAY_AMT5: confloat(ge=0) = 0.0
+    PAY_AMT6: confloat(ge=0) = 2671.0
 
 
 # Create a FastAPI application
@@ -181,8 +194,6 @@ def health_check():
             status_code=500,
             detail=f"MLflow client error: {e}"
         )
-
-
 
 # Run the app on port 5002
 uvicorn.run(app=app, port=config["service_port"], host="0.0.0.0")
