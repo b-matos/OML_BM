@@ -109,10 +109,11 @@ Para correr o serviço MLFlow Tracking Server localmente é necessário executar
 
 (Substituir ```./mlruns``` pela localização das runs)
 
-Neste caso a UI 
+Neste caso a UI estara disponivel em: http://127.0.0.1:5001
+
 
 ## Model Registry
-Os modelos foram registados ao correr o notebook: rumos_bank_lending_prediction.ipynb
+Os modelos foram registados ao correr o notebook: `rumos_bank_lending_prediction_register_mlruns`
 
 Nesse notebook são testados e registados os seguintes modelos:
 - Logistic Regression
@@ -122,71 +123,99 @@ Nesse notebook são testados e registados os seguintes modelos:
 - Random Forest
 - Neural Networks
 
-Após analise, foi escolhido o Random Forest como modelo a utilizar (@champion)
+Uma vez que o modelo Random Forest ocupa demasiado espaço e não é possivel passar para o Github, para este projeto foi discartado tendo sido escolhido o Neural Networks como modelo a utilizar (@champion).
 
-Mais tarde foi criado um modelo com pipeline, apesar do random forest não precisar de normalização dos dados.
+Para isso, foi um modelo com pipeline, para que os dados não tenham de ser tratados antes de utilizar o modelo.
 
-
-
-## Model Registry
-Os modelos foram registados ao correr o notebook: rumos_bank_lending_prediction.ipynb
-
-Nesse notebook são testados e registados os seguintes modelos:
-- Logistic Regression
-- KNN
-- SVM
-- Decision Tree
-- Random Forest
-- Neural Networks
-
-Após analise, foi escolhido o Random Forest como modelo a utilizar (@champion)
-
-Mais tarde foi criado um modelo com pipeline, apesar do random forest não precisar de normalização dos dados.
-
-## MLFlow Server
-
-
-Para correr o serviço MLFlow Tracking Server localmente é necessário executar os seguintes comandos:
-```
-### % MLFLOW_TRACKING_URI=../mlruns
-
-% mlflow ui --port 5001 --backend-store-uri ../mlruns --artifacts-destination ../mlruns   
-```
 
 # 5 - Serviço API
 Para expor o modelo registado numa API foi utilizada a framework FastAPI.
 
+Para correr esta API, basta executar o seguinte comando:
+
 ```
 python src/app/main.py
 ```
-(Para que o serviço funcione, é necessário que o MLFlow Tracking Server esteja a correr)
+(Para que o serviço funcione, é necessário que o [MLFlow Tracking Server](#4---mlflow-tracking-server) esteja a correr)
 
-O serviço tem 4 endpoints:
-- /default_payment_prediction
-- /model_metrics
-- /model_params
-- /model_metadata
+Foram criados cinco endpoints para o serviço:
 
-Para analizar a documentação do que ficou exposto, basta aceder a:
-http://127.0.0.1:5002/docs
+**/default_payment_prediction**
 
-(A porta 5002 poderá ser configurável no ficheiro config/app.json)
+    Prediction endpoint that processes input data and returns a model prediction.
+<br>
+
+**/model_metrics**
+
+    Endpoint to retrieve the metrics of the model.
+<br>
+
+**/model_params**
+
+    Endpoint to retrieve the parameters of the model.
+<br>
+
+**/model_metadata**
+
+    Endpoint to retrieve the metadata of the model.
+<br>
+
+**/health**
+
+    Health check endpoint to verify if the service is running.
+<br>
+
+Para analizar a documentação do serviço que ficou exposto, basta aceder a: http://127.0.0.1:5002/docs
+
+(A porta 5002 poderá ser configurável no ficheiro `config/app.json`)
 
 # 6 - Testes
 Neste projecto foram criados testes ao modelo (MLFlow) e ao serviço (FastAPI).
 
 **test_model.py:**
-- test_model_out
-- test_model_dir
-- test_model_out_shape
+- test_model_out_1: test prediction 1
+- test_model_out_0: test prediction 0
+- test_model_out_shape: test shape of prediction
+<br>
+<br>
 
 **test_service.py:**
-- test_default_payment_prediction
-- test_default_payment_prediction_invalid_data
-- test_default_payment_prediction_missing_data
-- test_get_model_metrics
-- test_get_model_params
-- test_get_model_metadata
+
+*test_default_payment_prediction*
+
+    Test for the /default_payment endpoint with valid input data.
+    It should return a prediction in the response.
+<br>
+
+*test_default_payment_prediction_invalid_data*
+
+    Test for the /default_payment endpoint with invalid input data.
+    It should return a 422 Unprocessable Entity status code.
+<br>
+
+*test_default_payment_prediction_missing_data*
+
+    Test for the /default_payment endpoint with missing input data.
+    It should return a 422 Unprocessable Entity status code.
+<br>
+
+*test_get_model_metrics*
+
+    Test for the /model endpoint.
+    It should return the model metrics.
+<br>
+
+*test_get_model_params*
+
+    Test for the /model endpoint.
+    It should return the model params.
+<br>
+
+*test_get_model_metadata*
+
+    Test for the /model endpoint.
+    It should return the model metadata.
+<br>
 
 # 7 - Serviço Conteinereizado
 
