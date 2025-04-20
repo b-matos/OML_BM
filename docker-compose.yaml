@@ -1,15 +1,20 @@
 services:
   mlflow-tracking-server:
-    container_name: mlflow-tracking
-    image: ghcr.io/mlflow/mlflow
-    command: mlflow ui --port 5001 --host 0.0.0.0 --backend-store-uri ./mlruns --artifacts-destination ./mlruns
-    volumes:
-      - ./mlruns:/mlruns
+    # Build the image from the Dockerfile.Model file
+    build:
+      context: .
+      dockerfile: Dockerfile.Model
+      tags:
+        - mlflow-tracking-server:latest
+        - ghcr.io/b-matos/mlflow-tracking-server:latest
+    image: mlflow-tracking-server
+    container_name: mlflow-tracking-server
     ports:
       - 5001:5001
     
 
   default-payment-prediction-service:
+    # Build the image from the Dockerfile.Service file
     build:
       context: .
       dockerfile: Dockerfile.Service
@@ -20,7 +25,6 @@ services:
     container_name: default-payment-prediction-service
     ports:
       - 5002:5002
-
     depends_on:
       - "mlflow-tracking-server"
 
