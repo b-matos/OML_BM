@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/367709212684116426/981779d6d1664e56bf8cd1ea89cd609a/artifacts
+end_time: 1745095940118
+entry_point_name: ''
+experiment_id: '367709212684116426'
+lifecycle_stage: active
+run_id: 981779d6d1664e56bf8cd1ea89cd609a
+run_name: Neural Networks Run
+run_uuid: 981779d6d1664e56bf8cd1ea89cd609a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745095232824
+status: 3
+tags: []
+user_id: bernardomatos
