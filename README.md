@@ -57,8 +57,6 @@ Por causa desta prévia má experiência, o banco desta vez quer ter garantias q
 # 1 - Criar Repositório
 Este projecto está disponivel no repositório: https://github.com/b-matos/OML_BM.git
 
-(Runs estão guardadas aqui:)
-
 
 # 2 - 'README.md' atualizado
 Um ficheiro Readme foi criado para uma melhor compreensão da estrutura do projeto.
@@ -80,17 +78,38 @@ De modo a que fique ativo, é necessário executar:
 conda activate OML_Latest
 ```
 
+Para desativar:
+```
+conda deactivate
+```
+
 
 # 4 - MLFlow Tracking Server
 Para criar o MLFlow Tracking server, registei o modelo e os seus parametros, assim como as métricas de avaliação.
 
-Para vizualizar o servidor executar:
+Ao longo do projecto foram usadas duas formas de aceder às runs: localmente e através de um servidor.
+
+## Localmente
+Para visualizar as runs é necessário executar:
 ```
-mlflow ui --backend-store-uri ../mlruns
+mlflow ui --backend-store-uri ./mlruns
+```
+(Substituir ```./mlruns``` pela localização das runs)
+
+Tipicamente a UI fica disponivel na porta 5000, sendo que para visualizar, basta aceder a: http://127.0.0.1:5000
+
+## MLFlow Server
+
+Para correr o serviço MLFlow Tracking Server localmente é necessário executar os seguintes comandos:
+```
+### % MLFLOW_TRACKING_URI=./mlruns
+
+% mlflow ui --port 5001 --backend-store-uri ./mlruns --artifacts-destination ./mlruns   
 ```
 
-(`../mlruns` deverá ser substituída pela localização das runs)
+(Substituir ```./mlruns``` pela localização das runs)
 
+Neste caso a UI 
 
 ## Model Registry
 Os modelos foram registados ao correr o notebook: rumos_bank_lending_prediction.ipynb
@@ -107,15 +126,7 @@ Após analise, foi escolhido o Random Forest como modelo a utilizar (@champion)
 
 Mais tarde foi criado um modelo com pipeline, apesar do random forest não precisar de normalização dos dados.
 
-## MLFlow Server
 
-
-Para correr o serviço MLFlow Tracking Server localmente é necessário executar os seguintes comandos:
-```
-### % MLFLOW_TRACKING_URI=../mlruns
-
-% mlflow server --port 5001 --backend-store-uri ../mlruns --artifacts-destination ../mlruns   
-```
 
 ## Model Registry
 Os modelos foram registados ao correr o notebook: rumos_bank_lending_prediction.ipynb
