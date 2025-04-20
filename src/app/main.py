@@ -10,17 +10,6 @@ import pandas as pd
 import json
 import uvicorn
 
-class ValidInt(Enum):
-    NEGATIVE_ONE = -1
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FIVE = 5
-    SIX = 6
-    SEVEN = 7
-    EIGHT = 8
-    NINE = 9
 
 # Load the application configuration
 with open('./config/app.json') as f:
@@ -62,12 +51,12 @@ class Request(BaseModel):
     EDUCATION: conint(ge=1, le=6) = 1
     MARRIAGE: conint(ge=1 , le=3) = 2
     AGE: int = 29
-    PAY_0: ValidInt = 1
-    PAY_2: ValidInt = 2
-    PAY_3: ValidInt = 2
-    PAY_4: ValidInt = 2
-    PAY_5: ValidInt = 2
-    PAY_6: ValidInt = 2
+    PAY_0: conint(ge=-1, le=9) = 1
+    PAY_2: conint(ge=-1, le=9) = 2
+    PAY_3: conint(ge=-1, le=9) = 2
+    PAY_4: conint(ge=-1, le=9) = 2
+    PAY_5: conint(ge=-1, le=9) = 2
+    PAY_6: conint(ge=-1, le=9) = 2
     BILL_AMT1: confloat(ge=0) = 31012.0
     BILL_AMT2: confloat(ge=0) = 30215.0
     BILL_AMT3: confloat(ge=0) = 33117.0
