@@ -48,3 +48,6 @@ jobs:
 
       - name: Enviar imagem serviço para o repositório do GitHub
         run: docker push ghcr.io/b-matos/default-payment-prediction-service:latest
+
+      - name: Enviar imagem modelo para o repositório do GitHub
+        run: docker push ghcr.io/b-matos/mlflow-tracking-server:latest
