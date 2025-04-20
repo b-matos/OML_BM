@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import mlflow
 from mlflow.exceptions import MlflowException
-from pydantic import BaseModel, conint, confloat, Field
+from pydantic import BaseModel, conint, confloat
 from enum import Enum
 from typing import Annotated
 import pandas as pd
